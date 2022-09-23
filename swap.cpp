@@ -3,16 +3,20 @@
 
 #include <iostream>
 
-void swap(int a, int b) {
-    int temp = a;  // No funciona por que lo que esta creando son nuevas variables y no toca las predefinidas, para cambiar el valor para el main hay que hacer un return
-    a = b;
-    b = temp;
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 int main()
 {
+    
     int e2 = 2, e3 = 3;
-    swap(e2, e3);
+    int* temp = &e2;
+    int* temp2 = &e3;
+
+    swap(temp,temp2);
     std::cout << e2 << " " << e3 ; // Vemos que no funciona por que esta haciendo una copia
     std::cout << "Test\n";
 }
