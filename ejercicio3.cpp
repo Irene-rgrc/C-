@@ -10,37 +10,47 @@
 
 
 int main() {
-    int matriz[3][3];
-    int numero, simetria;
 
-    // INGRESAR ELEMENTOS EN LA MATRIZ
-    printf("Ingrese elementos de matriz:\n");
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            
-            matriz[i][j] = numero;
+    std::cout << "----Ejercicio 3----\n";
+
+    int nFila, nColumna;
+    
+    // INICIALIZAMOS LA MATRIZ
+    std::cout << "Fila";
+    std::cin >> nFila;
+    std::cout << "Columna";
+    std::cin >> nColumna;
+
+
+    if (nFila == nColumna) {
+        int** matriz = new int* [nFila]; // Reservamos memoria para las filas
+        for (int i = 0; i < nFila; i++) {
+            matriz[i] = new int[nColumna]; // Reservamos memoria para las columnas
         }
-    }
-
-    //para comprobar si es simetrica
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            if (matriz[i][j] != matriz[j][i])
-                simetria = 0;
-            simetria = 1;
+        // Agregamos numeros a la matriz
+        std::cout << "\nInsertar elementos de la matriz";
+        for (int i = 0; i < nFila; i++) {
+            for (int j = 0; j < nColumna; j++) {
+                std::cout << "Digito: ["<<i<<"]["<<j<<"]\n";
+                std::cin >> *(*(matriz + i) + j); //matriz[i][j]
+            }
         }
-    }
+        std::cout << "\n";
+        // Imprimimos la matriz
+        for (int i = 0; i < nFila; i++) {
+            for (int j = 0; j < nColumna; j++) {
+                std::cout << *(*(matriz + i) + j);
+                std::cout << "\n";
+            }
+        }
 
-    //imprimimos si es simetrica o no
-    if (simetria == 1) {
-        printf("La matriz es simetrica!\n");
-        return 0;
+
     }
-    printf("la matriz no es simetrica\n");
+    else {
+        std::cout << "No es cuadrada por tanto no puede ser simetrica\n";
+    }
     return 0;
-
-
-
+      
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
