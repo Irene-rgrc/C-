@@ -13,7 +13,7 @@ int main() {
 
     std::cout << "----Ejercicio 3----\n";
 
-    int nFila, nColumna;
+    int nFila, nColumna, sim;
     
     // INICIALIZAMOS LA MATRIZ
     std::cout << "Fila";
@@ -42,6 +42,25 @@ int main() {
                 std::cout << *(*(matriz + i) + j);
                 std::cout << "\n";
             }
+        }
+
+        // COMPROBACION DE SI ES SIMETRICA
+        for (int i = 0; i < nFila; i++) {
+            for (int j = 0; j < nColumna; j++) {
+                if (matriz[i][j] != matriz[j][i]){
+                    sim = 0;
+                }
+                else {
+                    sim = 1;
+                }
+            }
+        }
+
+        if (sim=0) {
+            std::cout << "No es simetrica\n";
+        }
+        else {
+            std::cout << "Es simetrica\n";
         }
 
 
