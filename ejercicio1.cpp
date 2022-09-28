@@ -13,21 +13,40 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
-int main()
-{
+int main() {
+
     std::cout << "----Ejercicio 1----\n";
 
-    srand(time(NULL));
-    int aleat = 1 + (rand()%100); //entre 1 y 100
-    int a[5];
-     // Variable que almanece el array unidimensional
-    for (int i = 0; i < 5 < i++) {
-        int aleat = 1 + (rand() % 100);
-        a[i] = new int[aleat];
+    typedef int* IntPtr;
+    int i, n;
+    IntPtr p;
+    std::cout << "¿Cuántos números deseas introducir?";
+    std::cin >> i;
+    p = new int[i];
 
+    srand(time(NULL));
+    int aleat = 1 + (rand() % 100); //entre 1 y 100
+
+    if (p == nullptr)
+    {
+        std::cout << "Error: no se puede reservar memoria suficiente";
     }
- 
-    
+	else
+	{
+		for (n = 0; n < i; n++)
+		{
+			std::cout << "Introduce un número: ";
+            int aleat = 1 + (rand() % 100);
+            p[i] = *new int[aleat];
+		}
+		std::cout << "Has introducido: ";
+		for (n = 0; n < i; n++)
+		{
+			std::cout << p[n] << ", ";
+		}
+		delete[]p;
+	}
+	return 0;
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
