@@ -14,7 +14,7 @@ int main() {
     std::cout << "----Ejercicio 3----\n";
 
     int nFila, nColumna, sim;
-    
+
     // INICIALIZAMOS LA MATRIZ
     std::cout << "Fila";
     std::cin >> nFila;
@@ -31,7 +31,7 @@ int main() {
         std::cout << "\nInsertar elementos de la matriz";
         for (int i = 0; i < nFila; i++) {
             for (int j = 0; j < nColumna; j++) {
-                std::cout << "Digito: ["<<i<<"]["<<j<<"]\n";
+                std::cout << "Digito: [" << i << "][" << j << "]\n";
                 std::cin >> *(*(matriz + i) + j); //matriz[i][j]
             }
         }
@@ -39,7 +39,13 @@ int main() {
         // Imprimimos la matriz
         for (int i = 0; i < nFila; i++) {
             for (int j = 0; j < nColumna; j++) {
-                std::cout << *(*(matriz + i) + j);
+                if (i < j) {
+                    std::cout << *(*(matriz + i) + j);
+                }
+                else {
+                    std::cout << *(i + *(matriz + j));
+                }
+                
                 std::cout << "\n";
             }
         }
@@ -47,7 +53,7 @@ int main() {
         // COMPROBACION DE SI ES SIMETRICA
         for (int i = 0; i < nFila; i++) {
             for (int j = 0; j < nColumna; j++) {
-                if (matriz[i][j] != matriz[j][i]){
+                if (matriz[i][j] != matriz[j][i]) {
                     sim = 0;
                 }
                 else {
@@ -56,7 +62,7 @@ int main() {
             }
         }
 
-        if (sim=0) {
+        if (sim = 0) {
             std::cout << "No es simetrica\n";
         }
         else {
@@ -69,7 +75,7 @@ int main() {
         std::cout << "No es cuadrada por tanto no puede ser simetrica\n";
     }
     return 0;
-      
+
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
