@@ -42,9 +42,39 @@ void display() {
     glutSwapBuffers();
 }
 
+// FUNCIONES PARA ENTRADA DE RATON TECLADO ETC
+void reshape(GLsizei width, GLsizei height) {
+    if (height == 0) height = 1;
+    GLfloat aspectRatio = (GLfloat)width / (GLfloat)height;
+    glViewport(0, 0, width, height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60.0f, aspectRatio, 1.0f, 200.0f);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void idle() {
+    glutPostRedisplay();
+}
+
+void keyPressed(unsigned char key, int px, int py) {
+    writeLine("Key pressed!");
+    glutPostRedisplay();
+
+}
+
+void mouseMoved(int x, int y) {
+    glutPostRedisplay();
+}
+
+void mouseClicked(int button, int state, int x, int y) {
+    writeLine("Mouse clicked!");
+    glutPostRedisplay();
+}
+
 int main(int argc, char** argv)
 {
-    writeLine ("Hello World!");
+    writeLine ("Hello World con OpenGl");
 
     writeLine("Generando ventana...");
     glutInit(&argc, argv);
@@ -54,7 +84,12 @@ int main(int argc, char** argv)
     glutCreateWindow(TITLE);
 
     writeLine("Registrando funciones de tratamiento de eventos...");
+    glutReshapeFunc(reshape);
     glutDisplayFunc(display);
+    glutKeyboardFunc(keyPressed);
+    glutMotionFunc(mouseMoved);
+    glutMouseFunc(mouseClicked);
+    glutIdleFunc(idle);
 
     writeLine("Iniciando graficos...");
     initGraphics();
@@ -75,3 +110,4 @@ int main(int argc, char** argv)
 //   4. Use la ventana Lista de errores para ver los errores
 //   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
 //   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
+
