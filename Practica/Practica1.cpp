@@ -19,6 +19,8 @@ const GLclampf GREEN = 0.6;
 const GLclampf BLUE = 0.5;
 const GLclampf ALPHA = 1.0;
 
+BOOLEAN fullScreenMode;
+
 // FUNCION DE ESCRIBIR
 void writeLine(string cadena) {
     cout << cadena << endl;
@@ -72,6 +74,25 @@ void mouseClicked(int button, int state, int x, int y) {
     glutPostRedisplay();
 }
 
+// FUNCION PARA FULLSCREEN PULSANDO UNA TECLA
+
+void specialKey(int key, int x, int y) {
+    switch (key) {
+    case GLUT_KEY_F11:
+        fullScreenMode = !fullScreenMode;
+        if (fullScreenMode) {
+            glutFullScreen();
+        }
+        else {
+            glutReshapeWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
+            glutPositionWindow(WINDOW_POSITION_X, WINDOW_POSITION_Y);
+        }
+        break;
+    }
+}
+
+// ------------------------------------MAIN-------------------------------------
+
 int main(int argc, char** argv)
 {
     writeLine ("Hello World con OpenGl");
@@ -87,6 +108,7 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyPressed);
+    glutSpecialFunc(specialKey);
     glutMotionFunc(mouseMoved);
     glutMouseFunc(mouseClicked);
     glutIdleFunc(idle);
@@ -95,9 +117,7 @@ int main(int argc, char** argv)
     initGraphics();
 
     writeLine("Iniciando bucle infinito...");
-    glutMainLoop();
-
-    writeLine("Iniciando bucle infinito");
+    writeLine("Pulse F11 para activar/desactivar el modo de pantalla completa.");
     glutMainLoop();
 }
 
